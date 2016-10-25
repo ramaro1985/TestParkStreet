@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="container-fluid">
+		<h1>Test ParkStreet</h1>
+		<div class="row">
+			<div class="col-xs-3 col-sm-3 col-lg-3">
+				<div class="list-group" style="margin-top: 30px">
+					<div id="date_filter" class="list-group-item" data-toggle="tooltip" data-placement="left">
+						<div class="panel-body" style="padding: 0px 0px ">
+							<li class="dropdown list-group-item-text">
+								<a id="date_id" href="#" class="dropdown-toggle text-right" data-toggle="dropdown">
+									<span id="0" class="pull-left minimum_text">Fill by date</span>
+									<b class="caret" style="color: #000000"></b>
+								</a>
+								<ul class="dropdown-menu pre-scrollable date_list" id="date_list">
+									<li>
+										<a href="javascript:void(0)" id="1@date">Last Month To Date</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" id="2@date">This Month</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" id="3@date">This Year</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" id="4@date">Last Year</a>
+									</li>
+								</ul>
+							</li>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-lg-3">
+				<div class="list-group" style="margin-top: 30px">
+					<div id="client_filter" class="list-group-item" data-toggle="tooltip" data-placement="left">
+						<div class="panel-body" style="padding: 0px 0px ">
+							<li class="dropdown list-group-item-text">
+								<a id="client_id" href="#" class="dropdown-toggle text-right" data-toggle="dropdown">
+									<span id="0" class="pull-left minimum_text">All Clients</span>
+									<b class="caret" style="color: #000000"></b>
+								</a>
+								<ul class="dropdown-menu pre-scrollable client_list">
+									<li>
+										<a href="javascript:void(0)" id="0@client">All Clients</a>
+									</li>
+									{% for client in clients %}
+										<li>
+											<a href="javascript:void(0)" id="{{ client.getClientId }}@client">{{ client.getClientName }}</a>
+										</li>
+									{% endfor %}
+
+								</ul>
+							</li>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-lg-4">
+				<div class="list-group" style="margin-top: 30px">
+					<div id="product_filter" class="list-group-item" data-toggle="tooltip" data-placement="left">
+						<div class="panel-body" style="padding: 0px 0px ">
+							<li class="dropdown list-group-item-text">
+								<a id="product_id" href="#" class="dropdown-toggle text-right" data-toggle="dropdown">
+									<span id="0" class="pull-left minimum_text">Products</span>
+									<b class="caret" style="color: #000000"></b>
+								</a>
+								<ul class="dropdown-menu pre-scrollable product_list" id="product_list">
+								</ul>
+							</li>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-1 col-sm-1 col-lg-1 hide" id="loadingOff">
+				<div style="margin-top: 30px">
+					<img id="loading" src="{{ asset('frontend/images/loading.gif') }}" style="border: 0 none;">
+				</div>
+			</div>
+		</div>
+		<div class="row" style="background-color:lavender;">
+			<div class="col-xs-2 col-sm-2 col-lg-2 table-bordered">Invoice Num</div>
+			<div class="col-xs-2 col-sm-2 col-lg-2 table-bordered">Invoice Date</div>
+			<div class="col-xs-1 col-sm-2 col-lg-1 table-bordered">Qty</div>
+			<div class="col-xs-4 col-sm-2 col-lg-4 table-bordered">Product</div>
+			<div class="col-xs-2 col-sm-2 col-lg-2 table-bordered">Price</div>
+			<div class="col-xs-1 col-sm-2 col-lg-1 table-bordered">Total</div>
+		</div>
+		<div id="all_content">
+			{{ include('frontend/data.html.twig') }}
+		</div>
+	</div>
+	<input type="hidden" id="client_id" value="0">
+	<input type="hidden" id="product_id" value="0">
+	<input type="hidden" id="date_id" value="0">
+	<script src="{{ asset('frontend/js/lib/test.js') }}"></script>
+{% endblock %}

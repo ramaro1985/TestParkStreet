@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1 class="text-center">Products</h1>
+<div class="col-lg-8 col-lg-offset-2">
+	{% verbatim %}
+    <table ng-controller="ProductController" ng-table="tableParams" class="table">
+        <tr ng-repeat="product in $data">
+            <td data-title="'Invoice Num'">
+                {{product.client_id}}
+            </td>
+            <td data-title="'Invoice Date'">
+                {{product.client_name}}
+            </td>
+        </tr>
+    </table>
+    {% endverbatim %}
+{% endblock %}
+
